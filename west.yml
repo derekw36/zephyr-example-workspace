@@ -1,0 +1,23 @@
+# This example manifest creates a T2 star topology, described here:
+# https://docs.zephyrproject.org/latest/develop/west/workspaces.html
+# where the application repository contains the west manifest and
+# ignores Zephyr's default manifest.
+
+manifest:
+  remotes:
+    - name: zephyrproject-rtos
+      url-base: https://github.com/zephyrproject-rtos
+
+  projects:
+    - name: zephyr
+      remote: zephyrproject-rtos
+      revision: v4.1.0
+      import:
+        # Specify which projects to import from zephyr
+        name-allowlist:
+          - cmsis
+          - hal_stm32
+          - mcuboot
+
+  self:
+    path: app
